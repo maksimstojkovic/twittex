@@ -2,7 +2,7 @@ require "test_helper"
 
 class FollowsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @follow = follows(:one)
+    @follow = follows(:pending_follower_request)
   end
 
   test "should get index" do
