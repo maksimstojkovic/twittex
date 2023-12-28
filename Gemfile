@@ -62,6 +62,7 @@ group :development do
 
   #  Automatic testing
   gem "guard"
+  gem 'guard-minitest'
 end
 
 group :test do
