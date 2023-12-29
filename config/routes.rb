@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     path: "/",
     path_names: { sign_in: "login", sign_out: "logout", sign_up: "signup", password: "reset" }
 
+  devise_scope :user do
+    get "reset", to: "users/passwords#new", as: "reset_password"
+    get "change", to: "users/passwords#edit", as: "change_password"
+  end
   
   resource :follow, only: %i[ create destroy ]
   resources :posts
