@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :follows_sent, class_name: :Follow, foreign_key: :follower_id
   has_many :followings, through: :accepted_following_requests, source: :followee
 
+  has_many :posts, foreign_key: :author_id
+
   # HELPERS
 
   def self.email_find_or_create_by(attributes = {})
