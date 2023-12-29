@@ -3,26 +3,31 @@ class FollowsController < ApplicationController
 
   # POST /follows
   def create
-    @create_params = follow_params.to_h.merge({ follower: current_user, accepted: false })
-    @follow = Follow.new(@create_params)
-
-    if @follow.save
-      redirect_to @follow, notice: "Follow was successfully created."
+    if Follow.exists?(follow_params)
+      render json: { msg: "Already following user." }, status: :conflict
     else
-      render :new, status: :unprocessable_entity
+      @follow = Follow.new(follow_params)
+      
+      if @follow.save
+        @followee = follow_params[:followee]
+        render partial: "follow_button", locals: { user: follow_params[:followee] }
+      else
+        render json: { msg: "Invalid parameters." }, status: :unprocessable_entity
+      end
     end
   end
 
   # DELETE /follows/1
   def destroy
-    @follow = Follow.find_by(followee: follow_params[:followee], follower: current_user)
+    @follow = Follow.find_by(follow_params)
     @follow.destroy!
-    redirect_to follows_url, notice: "Follow was successfully destroyed.", status: :see_other
+    render partial: "follow_button", locals: { user: follow_params[:followee] }
   end
 
   private
     # Only allow a list of trusted parameters through.
     def follow_params
-      params.require(:follow).permit(:followee)
+      followee_id = params.require(:follow).permit(:user)[:user]
+      { followee: User.find(followee_id), follower: current_user }
     end
 end
