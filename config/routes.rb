@@ -4,11 +4,15 @@ Rails.application.routes.draw do
   devise_for :users,
     controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" },
     path: "/",
-    path_names: { sign_in: "login", sign_out: "logout", sign_up: "signup", password: "reset" }
+    path_names: { sign_in: "login", sign_out: "logout", sign_up: "signup", password: "reset" },
+    skip: :passwords
 
   devise_scope :user do
-    get "reset", to: "users/passwords#new", as: "reset_password"
-    get "change", to: "users/passwords#edit", as: "change_password"
+    get "forgot-password", to: "users/passwords#new", as: "new_user_password"
+    get "reset", to: "users/passwords#edit", as: "edit_user_password"
+    patch "reset", to: "users/passwords#update", as: "user_password"
+    put "reset", to: "users/passwords#update", as: nil
+    post "reset", to: "users/passwords#create", as: nil
   end
   
   resource :follow, only: %i[ create destroy ]
