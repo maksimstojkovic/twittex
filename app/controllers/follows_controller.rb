@@ -1,4 +1,6 @@
 class FollowsController < ApplicationController
+  before_action :authenticate_user!
+
   # POST /follows
   def create
     @create_params = follow_params.to_h.merge({ follower: current_user, accepted: false })
