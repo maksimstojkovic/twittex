@@ -1,24 +1,30 @@
-body {
-  margin: 0;
-  padding: 0;
+html {
+  min-height: 100vh;
 
-  header {
-    padding: 10px 10%;
+  body {
+    margin: 0;
+    padding: 0;
 
-    nav {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+    min-height: 100vh;
 
-      h1 {
-        margin: 0;
-        padding: 0;
+    header {
+      padding: 10px 10%;
+
+      nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+          margin: 0;
+          padding: 0;
+        }
       }
     }
-  }
 
-  main {
-    padding: 0 10%;
+    main {
+      padding: 0 10%;
+    }
   }
 }
