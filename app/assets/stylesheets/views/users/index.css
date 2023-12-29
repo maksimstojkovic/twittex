@@ -1,0 +1,13 @@
+.users-index {
+  ul.users {
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: flex;
+      flex-direction: row;
+      list-style-type: none;
+      gap: 10px;
+    }
+  }
+}
