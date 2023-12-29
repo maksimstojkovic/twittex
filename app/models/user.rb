@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  validates :name, presence: true
+  validates :username, presence: true, uniqueness: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable,
@@ -15,7 +18,7 @@ class User < ApplicationRecord
   has_many :accepted_following_requests, -> { where accepted: true }, class_name: :Follow, foreign_key: :follower_id
   has_many :pending_followings, through: :pending_following_requests, source: :followee
   has_many :followings, through: :accepted_following_requests, source: :followee
-  
+
   # HELPERS
 
   def self.email_find_or_create_by(attributes = {})
