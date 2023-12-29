@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  devise_scope :user do
-    root "devise/sessions#new"
-  end
+  root "posts#index"
   
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users,
+    controllers: { registrations: 'users/registrations' },
+    path: "/",
+    path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }
   
   resource :follow, only: %i[ create destroy ]
   resources :posts
