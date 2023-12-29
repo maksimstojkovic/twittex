@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   devise_for :users, controllers: { registrations: 'users/registrations' }
   
+  resource :follow, only: %i[ create destroy ]
   resources :posts
   
   #####
