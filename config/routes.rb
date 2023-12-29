@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   root "posts#index"
   
   devise_for :users,
-    controllers: { sessions: 'users/sessions', registrations: 'users/registrations' },
+    controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" },
     path: "/",
-    path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }
+    path_names: { sign_in: "login", sign_out: "logout", sign_up: "signup", password: "reset" }
+
   
   resource :follow, only: %i[ create destroy ]
   resources :posts
