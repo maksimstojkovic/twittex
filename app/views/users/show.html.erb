@@ -1,2 +1,15 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= "#{@user.name} (@#{@user.username})" %></h1>
+
+<%= render "follows/follow_button", user: @user %>
+
+<h2>Posts</h2>
+
+<% if @user.posts.any? %>
+  <ul>
+    <% @user.posts.each do |post| %>
+      <li><%= post.body %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No posts found.</p>
+<% end %>
