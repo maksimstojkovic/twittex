@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     put "reset", to: "users/passwords#update", as: nil
     post "reset", to: "users/passwords#create", as: nil
   end
+
+  resources :users, only: %i[ show index ]
   
   resource :follow, only: %i[ create destroy ]
   resources :posts
