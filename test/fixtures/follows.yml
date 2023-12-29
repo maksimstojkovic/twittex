@@ -1,15 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-pending_following_request:
-  follower: user1
-  followee: user2
-  accepted: false
-
-accepted_following_request:
-  follower: user1
-  followee: user3
-  accepted: true
-
 pending_follower_request:
   follower: user2
   followee: user1
@@ -18,4 +8,14 @@ pending_follower_request:
 accepted_follower_request:
   follower: user3
   followee: user1
+  accepted: true
+
+pending_following_request:
+  follower: user1
+  followee: user2
+  accepted: false
+
+accepted_following_request:
+  follower: user1
+  followee: user3
   accepted: true
