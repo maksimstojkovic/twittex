@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "posts#index"
   
   devise_for :users,
-    controllers: { registrations: 'users/registrations' },
+    controllers: { sessions: 'users/sessions', registrations: 'users/registrations' },
     path: "/",
     path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }
   
