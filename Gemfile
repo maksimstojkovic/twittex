@@ -63,6 +63,9 @@ group :development do
   #  Automatic testing
   gem "guard"
   gem 'guard-minitest'
+
+  # Open sent emails in browser
+  gem "letter_opener"
 end
 
 group :test do

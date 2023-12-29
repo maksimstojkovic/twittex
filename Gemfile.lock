@@ -138,6 +138,10 @@ GEM
     irb (1.11.0)
       rdoc
       reline (>= 0.3.8)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -292,6 +296,7 @@ DEPENDENCIES
   guard
   guard-minitest
   importmap-rails
+  letter_opener
   omniauth (~> 2.1)
   puma (>= 5.0)
   rails (~> 7.1.2)
