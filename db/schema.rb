@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[7.1].define(version: 2023_12_30_132626) do
   create_table "comments", force: :cascade do |t|
-    t.text "body"
+    t.text "body", null: false
     t.integer "post_id", null: false
     t.integer "author_id", null: false
     t.datetime "created_at", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_30_132626) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text "body"
+    t.text "body", null: false
     t.integer "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
