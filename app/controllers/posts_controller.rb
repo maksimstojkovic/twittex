@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.desc
+    @posts = Post.sort_desc
   end
 
   # GET /posts/1

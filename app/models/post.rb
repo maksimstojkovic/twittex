@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   belongs_to :author, class_name: :User
 
   has_many :likes
-  has_many :comments
+  has_many :comments, -> { order "created_at DESC" }
 
-  scope :desc, -> { order("created_at DESC") }
+  scope :sort_desc, -> { order("created_at DESC") }
 end
