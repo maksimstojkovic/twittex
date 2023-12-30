@@ -1,5 +1,5 @@
-<%= turbo_frame_tag "follow_#{user.id}", class: "follow-button" do %>
-  <p class="follow-count"><%= user.followers.count %></p>
+<%= turbo_frame_tag "follow_#{user.id}", class: "model-button" do %>
+  <p class="follow-count"><%= pluralize user.followers.count, "follower" %></p>
 
   <% if current_user != user %>
     <% if Follow.exists?(followee: user, follower: current_user) %>

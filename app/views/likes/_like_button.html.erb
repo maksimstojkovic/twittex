@@ -1,5 +1,5 @@
-<%= turbo_frame_tag "like_#{post.id}", class: "like-button" do %>
-  <p class="like-count"><%= post.likes.count %></p>
+<%= turbo_frame_tag "like_#{post.id}", class: "model-button" do %>
+  <p class="like-count"><%= pluralize post.likes.count, "like" %></p>
 
   <% if Like.exists?(post: post, user: current_user) %>
     <%= button_to "Unlike", like_path, params: { like: { post: post } }, method: :delete %>
