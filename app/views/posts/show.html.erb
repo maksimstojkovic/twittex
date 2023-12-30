@@ -3,3 +3,17 @@
 <div>
   <%= button_to "Delete post", @post, method: :delete %>
 </div>
+
+<h2>Comments</h2>
+
+<%= render 'comments/form', comment: @post.comments.new %>
+
+<div id="comments">
+  <% if @comments.any? %>
+    <% @comments.each do |comment| %>
+      <%= render comment %>
+    <% end %>
+  <% else %>
+    <p>Be the first to leave a comment.</p>
+  <% end %>
+</div>

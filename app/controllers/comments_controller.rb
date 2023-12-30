@@ -1,21 +1,25 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_comment, only: %i[ destroy ]
+  before_action :is_authorised, only: %i[ destroy ]
+  rescue_from ActiveRecord::RecordNotFound, with: :show_errors
 
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
 
     if @comment.save
-      redirect_to @comment, notice: "Comment was successfully created."
+      turbo_stream
     else
-      render :new, status: :unprocessable_entity
+      render partial: "comments/form", locals: { comment: @comment }, status: :unprocessable_entity
     end
   end
 
   # DELETE /comments/1
   def destroy
     @comment.destroy!
-    redirect_to comments_url, notice: "Comment was successfully destroyed.", status: :see_other
+    flash.now[:notice] = "Comment successfully deleted."
+    turbo_stream
   end
 
   private
@@ -26,6 +30,13 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:body, :author_id)
+      params.require(:comment).permit(:body, :post_id).to_h.merge({ author: current_user })
+    end
+
+    def is_authorised
+      if current_user != @comment.author
+        head :forbidden
+        return
+      end
     end
 end
