@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :follows_sent, class_name: :Follow, foreign_key: :follower_id
   has_many :followings, through: :accepted_following_requests, source: :followee
 
-  has_many :posts, foreign_key: :author_id
+  has_many :posts, -> { order "created_at DESC" }, foreign_key: :author_id
 
   # HELPERS
 
