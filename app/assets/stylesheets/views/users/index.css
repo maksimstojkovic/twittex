@@ -8,6 +8,11 @@
       flex-direction: row;
       list-style-type: none;
       gap: 10px;
+
+      p {
+        margin: 0;
+        padding: 0;
+      }
     }
   }
 }
