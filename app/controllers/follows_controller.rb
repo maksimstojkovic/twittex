@@ -1,5 +1,6 @@
 class FollowsController < ApplicationController
   before_action :authenticate_user!
+  rescue_from ActiveRecord::RecordNotFound, with: :show_errors
 
   def create
     if Follow.exists?(follow_params)
@@ -16,9 +17,12 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    @follow = Follow.find_by(follow_params)
-    @follow.destroy!
-    render_frame
+    @follow = Follow.find_by(followee_id: follow_params[:followee], follower: current_user)
+    if @follow && @follow.destroy
+      render_frame
+    else
+      show_errors
+    end
   end
 
   private
@@ -31,5 +35,10 @@ class FollowsController < ApplicationController
       render partial: "follow_button",
         locals: { user: User.find(follow_params[:followee]) },
         **args
+    end
+
+    def show_errors(exception = nil)
+      flash.now[:error] = "An unexpected error occurred."
+      render_flash
     end
 end
