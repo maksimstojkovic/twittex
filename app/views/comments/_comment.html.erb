@@ -6,6 +6,12 @@
 
   <p>
     <strong>Author:</strong>
-    <%= comment.author_id %>
+    <%= comment.author.name %>
   </p>
+
+  <% if comment.author == current_user %>
+    <div>
+      <%= button_to "Delete", comment, method: :delete %>
+    </div>
+  <% end %>
 </div>
