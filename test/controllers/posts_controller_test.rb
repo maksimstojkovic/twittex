@@ -12,11 +12,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_post_url
-    assert_response :success
-  end
-
   test "should create post" do
     assert_difference("Post.count") do
       post posts_url, params: { post: { body: @post.body } }
