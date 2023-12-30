@@ -34,7 +34,7 @@ class LikesController < ApplicationController
 
     def render_frame(**args)
       render partial: "like_button",
-        locals: { post: follow_params[:post] },
+        locals: { post: like_params[:post] },
         **args
     end
 
