@@ -7,5 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    hash = Digest::MD5.hexdigest(@user.email.downcase)
+    @img_src = "https://www.gravatar.com/avatar/#{hash}"
   end
 end
