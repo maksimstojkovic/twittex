@@ -6,7 +6,7 @@ class FollowsController < ApplicationController
     if Follow.exists?(follow_params)
         render_frame status: :conflict
     else
-      @follow = Follow.new(followee_id: follow_params[:followee], follower: current_user)
+      @follow = Follow.new(follow_params)
       
       if @follow.save
         render_frame
@@ -17,7 +17,7 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    @follow = Follow.find_by(followee_id: follow_params[:followee], follower: current_user)
+    @follow = Follow.find_by(follow_params)
     if @follow && @follow.destroy
       render_frame
     else
@@ -28,12 +28,13 @@ class FollowsController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def follow_params
-      params.require(:follow).permit(:followee)
+      p = params.require(:follow).permit(:followee)
+      { followee: User.find(p[:followee]), follower: current_user }
     end
 
     def render_frame(**args)
       render partial: "follow_button",
-        locals: { user: User.find(follow_params[:followee]) },
+        locals: { user: follow_params[:followee] },
         **args
     end
 
