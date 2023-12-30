@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[ show index ]
   
-  resources :posts, except: %i[ index ]
+  resources :posts, except: %i[ index new edit update ]
   resource :follow, only: %i[ create destroy ]
   resource :like, only: %i[ create destroy ]
   

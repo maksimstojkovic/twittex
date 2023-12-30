@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show destroy ]
 
   # GET /posts
   def index
@@ -19,15 +19,6 @@ class PostsController < ApplicationController
       turbo_stream
     else
       render :new, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /posts/1
-  def update
-    if @post.update(post_params)
-      redirect_to @post, notice: "Post was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
     end
   end
 
