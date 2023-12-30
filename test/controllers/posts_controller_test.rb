@@ -1,12 +1,14 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
+
   setup do
+    sign_in users(:one)
     @post = posts(:one)
   end
 
   test "should get index" do
-    get posts_url
+    get root_url
     assert_response :success
   end
 
@@ -17,10 +19,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post" do
     assert_difference("Post.count") do
-      post posts_url, params: { post: { author_id: @post.author_id, body: @post.body } }
+      post posts_url, params: { post: { body: @post.body } }
     end
 
-    assert_redirected_to post_url(Post.last)
+    assert_turbo_stream
   end
 
   test "should show post" do
