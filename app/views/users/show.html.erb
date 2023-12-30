@@ -10,6 +10,6 @@
 
 <div id="posts">
   <% @user.posts.each do |post| %>
-    <%= render post %>
+    <%= render post, post_link: true %>
   <% end %>
 </div>

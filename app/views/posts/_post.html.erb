@@ -1,7 +1,11 @@
 <div id="<%= dom_id post %>">
   <p>
     <strong>Body:</strong>
-    <%= post.body %>
+    <% if defined?(post_link) && post_link %>
+      <%= link_to post.body, post_path(post) %>
+    <% else %>
+      <%= post.body %>
+    <% end %>
   </p>
 
   <p>
