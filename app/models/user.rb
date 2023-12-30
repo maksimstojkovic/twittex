@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   has_many :posts, -> { order "created_at DESC" }, foreign_key: :author_id
 
+  scope :sort_username, -> { order "username ASC" }
+
   # HELPERS
 
   def self.email_find_or_create_by(attributes = {})
