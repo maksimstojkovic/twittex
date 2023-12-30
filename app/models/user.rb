@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :followings, through: :follows_sent, source: :followee
 
   has_many :posts, -> { order "created_at DESC" }, foreign_key: :author_id
+  has_many :comments, -> { order "created_at DESC" }, foreign_key: :author_id
 
   scope :sort_username, -> { order "username ASC" }
 

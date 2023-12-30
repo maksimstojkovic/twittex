@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :posts, except: %i[ index new edit update ]
   resource :follow, only: %i[ create destroy ]
   resource :like, only: %i[ create destroy ]
+  resources :comments, only: %i[ create destroy ]
   
   #####
 
