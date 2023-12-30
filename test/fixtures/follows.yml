@@ -1,21 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-pending_follower_request:
-  follower: user2
-  followee: user1
-  accepted: false
+follower_one:
+  follower: two
+  followee: one
 
-accepted_follower_request:
-  follower: user3
-  followee: user1
-  accepted: true
+follower_two:
+  follower: three
+  followee: one
 
-pending_following_request:
-  follower: user1
-  followee: user2
-  accepted: false
+following_one:
+  follower: one
+  followee: two
 
-accepted_following_request:
-  follower: user1
-  followee: user3
-  accepted: true
+following_two:
+  follower: one
+  followee: three

@@ -1,19 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-user1:
+one:
   name: "user1"
   username: "handle1"
   email: "user1@gmail.com"
   encrypted_password: "password"
+  confirmation_sent_at: 01/01/2023
+  confirmed_at: 01/01/2023
 
-user2:
+two:
   name: "user2"
   username: "handle2"
   email: "user2@gmail.com"
   encrypted_password: "password"
+  confirmation_sent_at: 01/01/2023
+  confirmed_at: 01/01/2023
 
-user3:
+three:
   name: "user3"
   username: "handle3"
   email: "user3@gmail.com"
   encrypted_password: "password"
+  confirmation_sent_at: 01/01/2023
+  confirmed_at: 01/01/2023
