@@ -5,11 +5,9 @@
 <h2>Posts</h2>
 
 <% if @user.posts.any? %>
-  <ul>
-    <% @user.posts.each do |post| %>
-      <li><%= post.body %></li>
-    <% end %>
-  </ul>
+  <% @user.posts.each do |post| %>
+    <%= render post %>
+  <% end %>
 <% else %>
   <p>No posts found.</p>
 <% end %>
