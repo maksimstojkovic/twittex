@@ -8,10 +8,10 @@ class User < ApplicationRecord
          :trackable, :omniauthable
 
   has_many :follows_received, class_name: :Follow, foreign_key: :followee_id
-  has_many :followers, through: :accepted_follower_requests, source: :follower
+  has_many :followers, through: :follows_received, source: :follower
 
   has_many :follows_sent, class_name: :Follow, foreign_key: :follower_id
-  has_many :followings, through: :accepted_following_requests, source: :followee
+  has_many :followings, through: :follows_sent, source: :followee
 
   has_many :posts, -> { order "created_at DESC" }, foreign_key: :author_id
 
