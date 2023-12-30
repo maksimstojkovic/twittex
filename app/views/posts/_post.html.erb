@@ -6,7 +6,7 @@
 
   <p>
     <strong>Author:</strong>
-    <%= post.author.name %>
+    <%= link_to post.author.name, user_path(post.author) %>
   </p>
 
   <%= render "likes/like_button", post: post %>
