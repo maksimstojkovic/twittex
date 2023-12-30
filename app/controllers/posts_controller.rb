@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[ show destroy ]
+  before_action :is_authorised, only: %i[ destroy ]
 
   # GET /posts
   def index
@@ -18,14 +19,14 @@ class PostsController < ApplicationController
     if @post.save
       turbo_stream
     else
-      render :new, status: :unprocessable_entity
+      render partial: 'posts/form', locals: { post: @post }, status: :unprocessable_entity
     end
   end
 
   # DELETE /posts/1
   def destroy
     @post.destroy!
-    redirect_to posts_url, notice: "Post was successfully destroyed.", status: :see_other
+    redirect_to user_url(current_user), notice: "Post was successfully destroyed.", status: :see_other
   end
 
   private
@@ -37,5 +38,12 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:body).to_h.merge({ author: current_user })
+    end
+
+    def is_authorised
+      if current_user != @post.author
+        head :forbidden
+        return
+      end
     end
 end
