@@ -1,24 +1,5 @@
-# README
+# Twittex
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple twitter clone with authenticated users, posts, likes and comments.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project focuses on backend associations, and uses a primitive frontend layout to validate functionality.
